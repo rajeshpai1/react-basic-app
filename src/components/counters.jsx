@@ -59,14 +59,14 @@ class Counters extends Component {
     const indx = counters.indexOf(counter);
     counters[indx] = { ...counter };
     counter[indx].value--;
-    this.setState({ counters: this.props.counter });
+    this.setState({ counters });
   };
   handleIncrement = (counter) => {
     const counters = [...this.state.counters];
     const indx = counters.indexOf(counter);
     counters[indx] = { ...counter };
     counters[indx].value++;
-    this.setState({ counters: this.props.counter });
+    this.setState({ counters });
   };
   handleDelete = (counterID) => {
     const counters = this.state.counters.filter((c) => c.id !== counterID);
