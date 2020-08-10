@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    value: this.props.value
+    value: this.props.value,
+    name: this.props.name
   };
   render() {
     return (
@@ -12,18 +13,14 @@ class Counter extends Component {
         >
           {this.formatCount()}
         </span>
-        <button onClick={() => this.handleIncrement()} className="btn btn-secondary btn-sm">Increment</button>
-        <button onClick={()=> this.handleDecrememnt()} className="btn btn-sm m-2 btn-danger">Delete</button>
+        <button onClick={() => this.props.onIncrement()} className="btn btn-secondary btn-sm">Increment</button>
+        <button onClick={() => this.props.onDecrement()} className="btn btn-secondary btn-sm m-2">Decrement</button>
+        <button onClick={()=> this.props.onDelete()} className="btn btn-sm m-2 btn-danger">Delete</button>
         <br></br>
       </React.Fragment>
     );
   }
-  handleIncrement = () => {
-  this.setState({ value: this.state.value + 1 })
-}
- handleDecrememnt = () => {
-  this.setState({ value: this.state.value -1 })
-}
+
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
     classes += this.state.value === 0 ? "warning" : "primary";
