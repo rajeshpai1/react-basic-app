@@ -35,16 +35,16 @@ class Counters extends Component {
     this.setState({ counters });
   };
   handleDecrement = (counter) => {
-    _.find(this.state.counters, ["id", counter.id]).value++;
+    _.find(this.state.counters, ["id", counter.id]).value--;
     this.setState({ counters: this.state.counters });
   };
   handleIncrement = (counter) => {
-    _.find(this.state.counters, ["id", counter.id]).value++;
+     _.find(this.state.counters, ["id", counter.id]).value++;
     this.setState({ counters: this.state.counters });
   };
-  handleDelete = (counterID) => {
-    const counters = this.state.counters.filter((c) => c.id !== counterID);
-    this.setState({ counters });
+  handleDelete = (counter) => {
+    const counters = this.state.counters.filter((c) => c.id !== counter.id);
+    this.setState({ counters});
   };
 
   render() {
