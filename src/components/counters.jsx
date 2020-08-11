@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Counter from "./counterComponents";
+import _ from "lodash";
 
 class Counters extends Component {
   state = {
@@ -26,6 +27,26 @@ class Counters extends Component {
       },
     ],
   };
+  handleReset = () => {
+    const counters = this.state.counters.map((c) => {
+      c.value = 0;
+      return c;
+    });
+    this.setState({ counters });
+  };
+  handleDecrement = (counter) => {
+    _.find(this.state.counters, ["id", counter.id]).value++;
+    this.setState({ counters: this.state.counters });
+  };
+  handleIncrement = (counter) => {
+    _.find(this.state.counters, ["id", counter.id]).value++;
+    this.setState({ counters: this.state.counters });
+  };
+  handleDelete = (counterID) => {
+    const counters = this.state.counters.filter((c) => c.id !== counterID);
+    this.setState({ counters });
+  };
+
   render() {
     return (
       <div>
@@ -42,36 +63,12 @@ class Counters extends Component {
             onDelete={() => this.handleDelete(counter)}
             value={counter.value}
             id={counter.id}
+            name={counter.name}
           ></Counter>
         ))}
       </div>
     );
   }
-  handleReset = () => {
-    const counters = this.state.counters.map((c) => {
-      c.value = 0;
-      return c;
-    });
-    this.setState({ counters });
-  };
-  handleDecrement = (counter) => {
-    const counters = [...this.state.counters];
-    const indx = counters.indexOf(counter);
-    counters[indx] = { ...counter };
-    counter[indx].value--;
-    this.setState({ counters });
-  };
-  handleIncrement = (counter) => {
-    const counters = [...this.state.counters];
-    const indx = counters.indexOf(counter);
-    counters[indx] = { ...counter };
-    counters[indx].value++;
-    this.setState({ counters });
-  };
-  handleDelete = (counterID) => {
-    const counters = this.state.counters.filter((c) => c.id !== counterID);
-    this.setState({ counters });
-  };
 }
 
 export default Counters;
