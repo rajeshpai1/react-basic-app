@@ -50,11 +50,7 @@ class Counters extends Component {
   render() {
     return (
       <div>
-        <div>
-          <button onClick={this.handleReset} className="btn btn-primary m-2">
-            Reset
-          </button>
-        </div>
+
         {this.state.counters.map((counter) => (
           <Counter
             key={counter.id}
@@ -66,7 +62,10 @@ class Counters extends Component {
             name={counter.name}
           ></Counter>
         ))}
-      </div>
+          <button onClick={this.handleReset} className="btn btn-primary m-2">
+            Reset
+          </button>
+        </div>
     );
   }
 }
